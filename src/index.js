@@ -3,13 +3,14 @@ import pageRouter from "./routes/pages.js";
 import conversationRouter from "./routes/conversation.js";
 import messageRouter from "./routes/messages.js";
 import webhookRouter from "./routes/webhook.js";
-
+import dotenv from "dotenv";
+dotenv.config();
 const app = express();
-const port = 3005;
+const port = process.env.PORT || 3005;
 
 app.use(express.json());
 
-app.get("/", (req, res) => {
+app.get("/", (_, res) => {
   res.send("Facebook Messenger API Example");
 });
 

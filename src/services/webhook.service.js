@@ -1,4 +1,6 @@
 import request from "request";
+import dotenv from "dotenv";
+dotenv.config();
 function handleMessage(senderId, receivedMessage) {
   const response = {
     text: `You sent the message: "${receivedMessage}". Now send me an image!`,
@@ -8,8 +10,7 @@ function handleMessage(senderId, receivedMessage) {
 }
 
 function callSendAPI(senderId, response) {
-  const PAGE_ACCESS_TOKEN =
-    "EAAOlpoz8OrkBO7FKAhgz28mCOiAdGlScITPNoFS8GsV65KfYHaAg0VNckELLzijHPkAHtgSZAJeZCGqanbEr89IMN7XRHBiERcGNmp6XZBLPfiXd3JEboeV0t7p0ehDZBwACAennZBaS41tlLxU3TElGDC2ZCLP5roPRVw0PtYNxPZApekSEvtLcQp08GfMyYpLXQZDZD";
+  const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
   const requestBody = {
     recipient: {
