@@ -4,7 +4,7 @@ export const getMessages =async(req, res) => {
    const token = req.headers.authorization?.split(" ")[1];
    const conversationId = req.query.conversationId;
 
-   if(!token) res.status(400).send({success:true, message:"Access token is missing"});
+   if(!token) res.status(400).send({success:false, message:"Access token is missing"});
    try {
       const messages = await fetchMessages(token, conversationId)
       res.status(200).send({success:true, messages})
