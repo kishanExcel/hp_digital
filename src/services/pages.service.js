@@ -1,5 +1,5 @@
 import axios from 'axios';
-const pageUrl = 'https://graph.facebook.com/v20.0/me?fields=id,name,accounts';
+const pageUrl = 'https://graph.facebook.com/v20.0/me?fields=id,name,accounts,adaccounts';
 
 
 export const fetchPages = async(token) => {

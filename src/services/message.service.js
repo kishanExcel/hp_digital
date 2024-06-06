@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const messageUrl = "https://graph.facebook.com/v20.0/";
+const baseUrl = "https://graph.facebook.com/v20.0/";
 
 export const fetchMessages = async (token, coversationId) => {
   const options = {
@@ -15,10 +15,21 @@ export const fetchMessages = async (token, coversationId) => {
 
   const data = response?.data?.data
   const messagePromises = data.map(async (item) => {
-    const message = await axios.get(`${messageUrl}${item.id}?fields=id,created_time,from,to,message`, options);
+    const message = await axios.get(`${baseUrl}${item.id}?fields=id,created_time,from,to,message`, options);
     return message.data;
 });
 
   const results = await Promise.all(messagePromises);
   return results
 };
+
+
+export const replyMessage = async(token, pageId, data) => {
+  const {PSID, message} = data;
+  const replyUrl =`${baseUrl}${pageId}/messages?recipient={id:${PSID}}&message={text:"${message}"}&messaging_type=RESPONSE&access_token=${token}`
+  
+  const response = await axios.post(
+    replyUrl
+  );
+  return response.data
+}
