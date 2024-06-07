@@ -9,7 +9,7 @@ export const fetchMessages = async (token, coversationId) => {
     },
   };
   const response = await axios.get(
-    `${messageUrl}${coversationId}/messages`,
+    `${baseUrl}${coversationId}/messages`,
     options
   );
 
@@ -26,10 +26,19 @@ export const fetchMessages = async (token, coversationId) => {
 
 export const replyMessage = async(token, pageId, data) => {
   const {PSID, message} = data;
-  const replyUrl =`${baseUrl}${pageId}/messages?recipient={id:${PSID}}&message={text:"${message}"}&messaging_type=RESPONSE&access_token=${token}`
+  const replyUrl =`${baseUrl}${pageId}/messages`
+  const payload = {
+    recipient:{ id:PSID},
+    messaging_type:'MESSAGE_TAG',
+    tag:'HUMAN_AGENT',
+    message:{ text:message},
+    }
+  const options = { params: { access_token: token }}
   
   const response = await axios.post(
-    replyUrl
+    replyUrl,
+    payload,
+    options
   );
-  return response.data
+  return response?.data
 }

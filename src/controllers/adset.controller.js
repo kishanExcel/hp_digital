@@ -1,8 +1,8 @@
 import { createAdSet } from "../services/adset.service.js";
 
 export const createAdSetController = async (req, res) => {
-  const {
-    access_token,
+   const access_token =req.headers.authorization?.split(" ")[1];
+   const {
     ad_account_id,
     bid_amount,
     billing_event,
@@ -15,10 +15,6 @@ export const createAdSetController = async (req, res) => {
     status,
     targeting
   } = req.body;
-
-  if (!access_token) {
-    return res.status(400).send({ success: false, message: "Access token is missing" });
-  }
 
   if (!ad_account_id) {
     return res.status(400).send({ success: false, message: "Ad account ID is missing" });

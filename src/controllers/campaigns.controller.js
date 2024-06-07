@@ -1,11 +1,8 @@
 import { createCampaign } from "../services/campaigns.service.js";
 
 export const createAdCampaign = async (req, res) => {
-  const { access_token, ad_account_id, buying_type, name, objective, status, special_ad_categories } = req.body;
-
-  if (!access_token) {
-    return res.status(400).send({ success: false, message: "Access token is missing" });
-  }
+  const access_token = req.headers.authorization?.split(" ")[1];
+  const {ad_account_id, buying_type, name, objective, status, special_ad_categories } = req.body;
 
   if (!ad_account_id) {
     return res.status(400).send({ success: false, message: "Ad account ID is missing" });

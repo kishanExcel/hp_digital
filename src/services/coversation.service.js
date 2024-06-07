@@ -4,7 +4,7 @@ const covsersationBaseUrl = "https://graph.facebook.com/v20.0/";
 export const fetchConversation = async (token, pageId) => {
   const options = {
     params: {
-      fields:"participants{picture{url},name,email,id},messages{id,message,created_time}",
+      fields:"participants{picture{url},name,email,id},messages{id,message,created_time,to}",
       access_token: token,
     },
   };
