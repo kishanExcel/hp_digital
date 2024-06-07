@@ -7,17 +7,21 @@ export const createLeadForm = async ({
   page_id,
   name,
   questions,
-  block_display_for_non_targeted_viewer
+  block_display_for_non_targeted_viewer,
+  privacy_policy_url,
+  follow_up_action_url
 }) => {
   try {
     const payload = {
       access_token,
       name,
       questions,
-      block_display_for_non_targeted_viewer
+      block_display_for_non_targeted_viewer,
+      privacy_policy: { url: privacy_policy_url },
+      follow_up_action_url
     };
 
-    console.log("Request Payload:", JSON.stringify(payload, null, 2)); // Log the request payload
+    console.log("Request Payload:", JSON.stringify(payload, null, 2)); 
 
     const response = await axios.post(
       `${leadFormBaseUrl}${page_id}/leadgen_forms`,
