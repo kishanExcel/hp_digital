@@ -6,6 +6,7 @@ import webhookRouter from "./routes/webhook.js";
 import campaignRouter from "./routes/campaigns.js";
 import adsetRouter from "./routes/adset.js";
 import leadformRouter from "./routes/leadform.js";
+import adcreativeRouter from "./routes/adcreative.js";
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -25,6 +26,7 @@ app.use("/api/v1", webhookRouter);
 app.use("/api/v1", campaignRouter);
 app.use("/api/v1", adsetRouter);
 app.use("/api/v1", leadformRouter);
+app.use("/api/v1", adcreativeRouter);
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
