@@ -24,3 +24,19 @@ export const createCampaign = async ({ access_token, ad_account_id, buying_type,
     throw new Error('Failed to create campaign');
   }
 };
+
+export const fetchCampaigns = async (token, ad_account_id) => {
+  const options = {
+    params: {
+      fields:"name,id",
+      access_token:token,
+    },
+  };
+
+  const response = await axios.get(
+    `${campaignBaseUrl}act_${ad_account_id}/campaigns`,
+    options
+  );
+  const compaigns = response?.data;
+  return compaigns;
+};
