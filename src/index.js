@@ -14,6 +14,7 @@ import dotenv from "dotenv";
 import { socketServerSetup } from "./notifications/socketServer.js";
 import insightsRouter from "./routes/insights.js";
 import postsRoutes from "./routes/posts.js";
+import commentsRoutes from "./routes/comments.js";
 
 dotenv.config();
 const app = express();
@@ -36,6 +37,7 @@ app.use("/api/v1", adsetRouter);
 app.use("/api/v1", leadformRouter);
 app.use("/api/v1", insightsRouter);
 app.use("/api/v1", postsRoutes);
+app.use("/api/v1", commentsRoutes);
 
 httpServer.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
