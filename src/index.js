@@ -13,6 +13,7 @@ import { isTokenExist } from "./middlewares/isTokenExist.js";
 import dotenv from "dotenv";
 import { socketServerSetup } from "./notifications/socketServer.js";
 import insightsRouter from "./routes/insights.js";
+import postsRoutes from "./routes/posts.js";
 
 dotenv.config();
 const app = express();
@@ -33,7 +34,8 @@ app.use("/api/v1", webhookRouter);
 app.use("/api/v1", campaignRouter);
 app.use("/api/v1", adsetRouter);
 app.use("/api/v1", leadformRouter);
-app.use("/api/v1", insightsRouter)
+app.use("/api/v1", insightsRouter);
+app.use("/api/v1", postsRoutes);
 
 httpServer.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
